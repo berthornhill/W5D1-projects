@@ -52,6 +52,7 @@ class LinkedList
   end
 
   def get(key)
+
   end
 
   def include?(key)
@@ -60,6 +61,7 @@ class LinkedList
   def append(key, val)
     new_node = Node.new(key, val)
     new_node.prev = @tail.prev
+    @tail.prev.next = new_node
     new_node.next = @tail
     @tail.prev = new_node
  
@@ -74,9 +76,18 @@ class LinkedList
   end
 
   def remove(key)
+
   end
 
-  def each
+  def each(&prc)
+    # node = first
+    # until node == @tail
+    #   prc.call(node)
+    #   node = node.next
+    # end
+
+    prc.call(first)
+    last.each(&prc) if last
   end
 
   # uncomment when you have `each` working and `Enumerable` included

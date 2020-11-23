@@ -28,6 +28,8 @@ class LinkedList
 
     @head.next = @tail
     @tail.prev = @head
+
+    @list = []
   end
 
   def [](i)
@@ -36,12 +38,17 @@ class LinkedList
   end
 
   def first
+    @head.next
+
   end
 
   def last
+    @tail.prev
   end
 
   def empty?
+    @head.next == @tail
+    
   end
 
   def get(key)
@@ -51,6 +58,16 @@ class LinkedList
   end
 
   def append(key, val)
+    new_node = Node.new(key, val)
+    new_node.prev = @tail.prev
+    new_node.next = @tail
+    @tail.prev = new_node
+ 
+
+    #find tail and add new node in front of tail.
+    # new_node previous points to current tail's previous
+    # new_node next becomes tail.
+    # tail's previous becomes new_node.
   end
 
   def update(key, val)
